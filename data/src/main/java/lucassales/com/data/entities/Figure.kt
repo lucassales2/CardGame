@@ -1,4 +1,4 @@
-package lucassales.com.data
+package lucassales.com.data.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
