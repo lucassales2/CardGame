@@ -1,4 +1,4 @@
-package lucassales.com.br
+package lucassales.com.data_android
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

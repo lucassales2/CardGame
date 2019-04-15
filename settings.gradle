@@ -1,2 +1,2 @@
-include ':app', ':data'
+include ':app', ':data', ':data-android'
 rootProject.name='Card Game'
