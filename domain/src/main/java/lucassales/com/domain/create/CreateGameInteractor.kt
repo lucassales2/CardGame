@@ -8,7 +8,6 @@ import lucassales.com.data.entities.Match
 import lucassales.com.data.entities.pile.PileType
 import lucassales.com.domain.AppCoroutineDispatchers
 import lucassales.com.domain.GenerateEntitiesInteractor
-import lucassales.com.domain.Interactor
 import lucassales.com.domain.ResultInteractor
 
 class CreateGameInteractor(

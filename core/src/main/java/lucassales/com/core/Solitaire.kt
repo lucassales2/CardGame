@@ -1,10 +1,10 @@
-//package lucassales.com.core
+// package lucassales.com.core
 //
-//import lucassales.com.data.entities.NoCard
-//import lucassales.com.data.entities.SolitaireCard
-//import lucassales.com.data.entities.Suit
+// import lucassales.com.data.entities.NoCard
+// import lucassales.com.data.entities.SolitaireCard
+// import lucassales.com.data.entities.Suit
 //
-//class Solitaire(val deck: Deck) {
+// class Solitaire(val deck: Deck) {
 //
 //    val wastePile = mutableListOf<SolitaireCard>()
 //    val foundationPiles = Array(4) {
@@ -134,4 +134,4 @@
 //    fun isComplete(): Boolean {
 //        return foundationPiles.map { it.cards.size }.sum() == 52
 //    }
-//}
+// }

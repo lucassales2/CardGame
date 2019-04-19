@@ -6,8 +6,5 @@ class CreateGameTest {
 
     @Test
     fun test() {
-
-
     }
-
 }

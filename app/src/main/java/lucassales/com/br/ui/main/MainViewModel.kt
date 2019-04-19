@@ -31,7 +31,6 @@ class MainViewModel(
         viewModelScope.launch {
             matchId = runInteractor(createGameInteractor, SolitaireRules)
             getMatchByIdInteractor.setParams(matchId)
-            getMatchByIdInteractor(Unit)
         }
 
         disposables += getMatchByIdInteractor.observe()
