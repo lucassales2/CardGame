@@ -1,12 +1,20 @@
 package lucassales.com.br.ui.main
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.main_fragment.*
 import lucassales.com.br.R
+import lucassales.com.br.extensions.deckDrawable
+import lucassales.com.br.extensions.drawable
+import lucassales.com.br.extensions.wasteDrawable
+import lucassales.com.br.util.observeNonNull
+import lucassales.com.data.entities.pile.PileType
+import lucassales.com.data.entities.relation.Solitaire
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : Fragment() {
 
@@ -14,7 +22,7 @@ class MainFragment : Fragment() {
         fun newInstance() = MainFragment()
     }
 
-    private lateinit var viewModel: MainViewModel
+    private val viewModel: MainViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,9 +32,22 @@ class MainFragment : Fragment() {
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        wasteIb.setOnClickListener {
+            viewModel.onWasteClick()
+        }
+
+        deckIb.setOnClickListener {
+            viewModel.onDeckClick()
+        }
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
+        viewModel.solitaire.observeNonNull(this) { solitaire ->
+            wasteIb.setImageResource(solitaire.wasteDrawable)
+            deckIb.setImageResource(solitaire.deckDrawable)
+        }
     }
 }

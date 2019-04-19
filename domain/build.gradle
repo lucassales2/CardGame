@@ -1,0 +1,16 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+    implementation project(":data")
+    implementation project(":core")
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
+    implementation "androidx.room:room-runtime:$versions.room"
+    implementation "io.reactivex.rxjava2:rxjava:$versions.rxJava"
+    kapt "androidx.room:room-compiler:$versions.room"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines"
+    implementation "org.koin:koin-core:$versions.koin"
+    testImplementation "junit:junit:4.12"
+    testImplementation "io.mockk:mockk:1.9.3"
+}

@@ -2,19 +2,92 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.main.MainFragment">
 
-    <TextView
-        android:id="@+id/message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MainFragment"
+    <ImageButton
+        android:id="@+id/deckIb"
+        style="@style/AppTheme.Card"
+        android:layout_width="@dimen/cardWidth"
+        android:layout_height="@dimen/cardHeight"
+        android:layout_marginTop="@dimen/marginDefault"
+        android:layout_marginEnd="@dimen/marginDefault"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/wasteIb"
+        style="@style/AppTheme.Card"
+        android:layout_width="@dimen/cardWidth"
+        android:layout_height="@dimen/cardHeight"
+        android:layout_marginTop="@dimen/marginDefault"
+        android:layout_marginEnd="@dimen/marginSmall"
+        app:layout_constraintEnd_toStartOf="@id/deckIb"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/foundationIb1"
+        style="@style/AppTheme.Card"
+        android:layout_width="@dimen/cardWidth"
+        android:layout_height="@dimen/cardHeight"
+        android:layout_marginTop="@dimen/marginDefault"
+        android:layout_marginEnd="@dimen/marginDefault"
+        app:layout_constraintEnd_toStartOf="@+id/wasteIb"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/foundationIb2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/foundationIb3"
+        style="@style/AppTheme.Card"
+        android:layout_width="@dimen/cardWidth"
+        android:layout_height="@dimen/cardHeight"
+        android:layout_marginTop="@dimen/marginDefault"
+        app:layout_constraintEnd_toStartOf="@+id/foundationIb2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/foundationIb4"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/foundationIb2"
+        style="@style/AppTheme.Card"
+        android:layout_width="@dimen/cardWidth"
+        android:layout_height="@dimen/cardHeight"
+        android:layout_marginTop="@dimen/marginDefault"
+        app:layout_constraintEnd_toStartOf="@+id/foundationIb1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/foundationIb3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/foundationIb4"
+        style="@style/AppTheme.Card"
+        android:layout_width="@dimen/cardWidth"
+        android:layout_height="@dimen/cardHeight"
+        android:layout_marginStart="@dimen/marginDefault"
+        android:layout_marginTop="@dimen/marginDefault"
+        app:layout_constraintEnd_toStartOf="@+id/foundationIb3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/boardRv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/marginDefault"
+        android:layout_marginEnd="@dimen/marginDefault"
+        android:layout_marginBottom="@dimen/marginDefault"
+        android:layout_marginTop="@dimen/marginDefault"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/foundationIb1">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

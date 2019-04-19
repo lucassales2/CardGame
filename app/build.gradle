@@ -7,11 +7,11 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion buildConfig.compileSdk
     defaultConfig {
         applicationId "lucassales.com.br"
-        minSdkVersion 14
-        targetSdkVersion 28
+        minSdkVersion buildConfig.minSdk
+        targetSdkVersion buildConfig.targetVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -26,23 +26,38 @@ android {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
     }
-    buildToolsVersion = '28.0.3'
+
+    packagingOptions {
+        pickFirst("META-INF/atomicfu.kotlin_module")
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
+    implementation project(":core")
+    implementation project(":data-android")
+    implementation project(":data")
+    implementation project(":domain")
+    implementation "io.reactivex.rxjava2:rxjava:$versions.rxJava"
+    implementation "io.reactivex.rxjava2:rxkotlin:$versions.rxKotlin"
+    implementation "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid"
 
-    // AndroidX (based on koin-android)
-    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation "androidx.appcompat:appcompat:$versions.appcompat"
     implementation 'androidx.core:core-ktx:1.0.1'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
+    implementation "androidx.constraintlayout:constraintlayout:$versions.constraintLayout"
+    implementation "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle"
+    implementation "com.jakewharton.timber:timber:4.7.1"
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+    testImplementation "io.mockk:mockk:$versions.mockk"
+    androidTestImplementation "androidx.test.ext:junit:$versions.androidJunit"
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
+
+    // Koin for Kotlin
+    implementation "org.koin:koin-core:$versions.koin"
+    // Koin extended & experimental features
+    implementation "org.koin:koin-core-ext:$versions.koin"
     // Koin AndroidX Scope feature
     implementation "org.koin:koin-androidx-scope:$versions.koin"
 

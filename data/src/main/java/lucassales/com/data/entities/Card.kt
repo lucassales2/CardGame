@@ -9,24 +9,23 @@ import androidx.room.PrimaryKey
 @Entity(
     tableName = "cards",
     indices = [
-        Index(value = ["figure"]),
-        Index(value = ["suit"])
+        Index(value = ["figureId", "suitId"], unique = true)
     ],
     foreignKeys = [
         ForeignKey(
             entity = Figure::class,
             parentColumns = ["id"],
-            childColumns = ["figure"]
+            childColumns = ["figureId"]
         ),
         ForeignKey(
             entity = Suit::class,
             parentColumns = ["id"],
-            childColumns = ["suit"]
+            childColumns = ["suitId"]
         )
     ]
 )
 data class Card(
     @PrimaryKey override val id: Long,
-    @ColumnInfo(name = "figure") val figure: Long,
-    @ColumnInfo(name = "suit") val suit: Long
+    @ColumnInfo(name = "figureId", index = true) val figureId: Long,
+    @ColumnInfo(name = "suitId", index = true) val suitId: Long
 ) : GameEntity

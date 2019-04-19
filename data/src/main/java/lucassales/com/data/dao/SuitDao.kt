@@ -9,5 +9,8 @@ import lucassales.com.data.entities.Suit
 abstract class SuitDao : EntityDao<Suit> {
 
     @Query("SELECT * FROM suits")
-    abstract fun all(): Flowable<Suit>
+    abstract fun all(): Flowable<List<Suit>>
+
+    @Query("SELECT * FROM suits")
+    abstract suspend fun allSuspend(): List<Suit>
 }
