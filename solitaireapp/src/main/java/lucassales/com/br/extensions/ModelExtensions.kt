@@ -1,8 +1,8 @@
 package lucassales.com.br.extensions
 
 import lucassales.com.br.R
-import lucassales.com.core.solitaire.isDeckEmpty
-import lucassales.com.core.solitaire.wasteCard
+import lucassales.com.core.extensions.isDeckEmpty
+import lucassales.com.core.extensions.wasteCard
 import lucassales.com.data.entities.SolitaireCard
 import lucassales.com.data.entities.relation.Solitaire
 

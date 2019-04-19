@@ -1,4 +1,4 @@
-package lucassales.com.core.solitaire
+package lucassales.com.core.extensions
 
 import lucassales.com.data.entities.SolitaireCard
 import lucassales.com.data.entities.pile.PileType

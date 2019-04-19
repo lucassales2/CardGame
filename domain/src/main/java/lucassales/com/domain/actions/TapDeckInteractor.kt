@@ -1,11 +1,10 @@
 package lucassales.com.domain.actions
 
 import kotlinx.coroutines.CoroutineDispatcher
+import lucassales.com.core.extensions.deckPile
+import lucassales.com.core.extensions.wastePile
 import lucassales.com.data.dao.SolitaireCardDao
 import lucassales.com.data.dao.pile.PileDao
-import lucassales.com.data.dao.pile.deckPile
-import lucassales.com.data.dao.pile.wastePile
-import lucassales.com.data.entities.pile.PileType
 import lucassales.com.domain.AppCoroutineDispatchers
 import lucassales.com.domain.Interactor
 
@@ -28,7 +27,7 @@ class TapDeckInteractor(
                 solitaireCardDao.updateAll(waste.cards.map {
                     it.copy(
                         faceUp = false,
-                        pileId = deck.pile.id
+                        pileId = deck.id
                     )
                 })
             }
@@ -36,7 +35,7 @@ class TapDeckInteractor(
                 solitaireCardDao.update(
                     deck.cards.last().copy(
                         faceUp = true,
-                        pileId = waste.pile.id
+                        pileId = waste.id
                     )
                 )
             }
