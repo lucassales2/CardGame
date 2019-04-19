@@ -9,7 +9,7 @@ import lucassales.com.data.dao.FigureDao
 import lucassales.com.data.dao.MatchDao
 import lucassales.com.data.dao.SolitaireCardDao
 import lucassales.com.data.dao.SuitDao
-import lucassales.com.data.dao.pile.NewPileDao
+import lucassales.com.data.dao.pile.PileDao
 import lucassales.com.data.entities.Card
 import lucassales.com.data.entities.Figure
 import lucassales.com.data.entities.Match
@@ -34,6 +34,6 @@ abstract class GameDatabase : RoomDatabase() {
     abstract fun figureDao(): FigureDao
     abstract fun suitDao(): SuitDao
     abstract fun matchDao(): MatchDao
-    abstract fun pileDao(): NewPileDao
+    abstract fun pileDao(): PileDao
     abstract fun solitaireCardDao(): SolitaireCardDao
 }

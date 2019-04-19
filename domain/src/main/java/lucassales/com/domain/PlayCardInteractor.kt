@@ -2,12 +2,12 @@ package lucassales.com.domain
 
 import kotlinx.coroutines.CoroutineDispatcher
 import lucassales.com.data.dao.SolitaireCardDao
-import lucassales.com.data.dao.pile.NewPileDao
+import lucassales.com.data.dao.pile.PileDao
 import lucassales.com.data.entities.pile.PileType
 
 class PlayCardInteractor(
     appCoroutineDispatchers: AppCoroutineDispatchers,
-    private val pileDao: NewPileDao,
+    private val pileDao: PileDao,
     private val solitaireCardDao: SolitaireCardDao
 ) : Interactor<PlayCardInteractor.Input> {
 

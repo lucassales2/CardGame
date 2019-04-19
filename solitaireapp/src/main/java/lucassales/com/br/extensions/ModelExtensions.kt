@@ -1,8 +1,9 @@
 package lucassales.com.br.extensions
 
 import lucassales.com.br.R
+import lucassales.com.core.solitaire.isDeckEmpty
+import lucassales.com.core.solitaire.wasteCard
 import lucassales.com.data.entities.SolitaireCard
-import lucassales.com.data.entities.pile.PileType
 import lucassales.com.data.entities.relation.Solitaire
 
 val SolitaireCard.drawable: Int
@@ -67,11 +68,11 @@ val SolitaireCard.drawable: Int
     }
 
 val Solitaire.wasteDrawable
-    get() = piles.find { it.pile.type == PileType.Waste }?.cards?.firstOrNull()?.drawable
+    get() = wasteCard?.drawable
         ?: R.drawable.empty_card
 
 val Solitaire.deckDrawable: Int
-    get() = if (piles.find { it.pile.type == PileType.Deck }?.cards?.isEmpty() == true) {
+    get() = if (isDeckEmpty) {
         R.drawable.empty_card
     } else {
         R.drawable.backface_blu

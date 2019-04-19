@@ -1,32 +1,32 @@
 package lucassales.com.data.dao.pile
 
 import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Update
-import lucassales.com.data.entities.pile.PileEntity
+import androidx.room.Query
+import androidx.room.Transaction
+import lucassales.com.data.dao.EntityDao
+import lucassales.com.data.entities.pile.Pile
+import lucassales.com.data.entities.pile.PileType
+import lucassales.com.data.entities.relation.PileWithCards
 
 @Dao
-interface PileDao<in P : PileEntity> {
-    @Insert
-    suspend fun insert(entity: P): Long
+abstract class PileDao : EntityDao<Pile> {
+    @Transaction
+    @Query("SELECT * FROM pile WHERE type =:type and match_id =:matchId")
+    abstract suspend fun getByMatchIdAndType(matchId: Long, type: PileType): List<PileWithCards>
+}
 
-    @Insert
-    suspend fun insertAll(vararg entity: P)
+suspend fun PileDao.wastePile(matchId: Long): PileWithCards {
+    return getByMatchIdAndType(matchId, PileType.Waste).first()
+}
 
-    @Insert
-    suspend fun insertAll(entities: List<P>)
+suspend fun PileDao.deckPile(matchId: Long): PileWithCards {
+    return getByMatchIdAndType(matchId, PileType.Deck).first()
+}
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertAllOrIgnore(entities: List<P>)
+suspend fun PileDao.tableauPiles(matchId: Long): List<PileWithCards> {
+    return getByMatchIdAndType(matchId, PileType.Tableau)
+}
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertOrIgnore(entity: P)
-
-    @Update
-    suspend fun update(entity: P)
-
-    @Delete
-    suspend fun delete(entity: P): Int
+suspend fun PileDao.foundationPiles(matchId: Long): List<PileWithCards> {
+    return getByMatchIdAndType(matchId, PileType.Foundation)
 }

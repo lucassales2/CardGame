@@ -14,6 +14,6 @@ val interactorModule = module {
     factory { CreateGameInteractor(get(), get(), get(), get(), get(), get()) }
     factory { CreateSolitaireCardInteractor(get(), get()) }
     factory { GetMatchByIdInteractor(get(), get()) }
-    factory { TapWasteInteractor(get()) }
+    factory { TapWasteInteractor(get(), get(), get()) }
     factory { TapDeckInteractor(get(), get(), get()) }
 }

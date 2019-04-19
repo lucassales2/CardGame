@@ -30,6 +30,6 @@ import lucassales.com.data.entities.pile.Pile
 data class SolitaireCard(
     @PrimaryKey(autoGenerate = true) override val id: Long = 0,
     @ColumnInfo(name = "card_id") val cardId: Long,
-    @ColumnInfo(name = "pile_id") var pileId: Long,
-    @ColumnInfo(name = "face_up") var faceUp: Boolean = false
+    @ColumnInfo(name = "pile_id") val pileId: Long,
+    @ColumnInfo(name = "face_up") val faceUp: Boolean = false
 ) : GameEntity

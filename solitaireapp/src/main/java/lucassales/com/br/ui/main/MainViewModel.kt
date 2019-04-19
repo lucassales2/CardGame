@@ -6,10 +6,11 @@ import androidx.lifecycle.viewModelScope
 import io.reactivex.rxkotlin.plusAssign
 import kotlinx.coroutines.launch
 import lucassales.com.br.ui.base.BaseViewModel
-import lucassales.com.core.SolitaireRules
+import lucassales.com.core.solitaire.SolitaireRules
 import lucassales.com.data.entities.relation.Solitaire
 import lucassales.com.domain.AppSchedulers
 import lucassales.com.domain.actions.TapDeckInteractor
+import lucassales.com.domain.actions.TapWasteInteractor
 import lucassales.com.domain.create.CreateGameInteractor
 import lucassales.com.domain.launchInteractor
 import lucassales.com.domain.runInteractor
@@ -20,7 +21,8 @@ class MainViewModel(
     appSchedulers: AppSchedulers,
     createGameInteractor: CreateGameInteractor,
     getMatchByIdInteractor: GetMatchByIdInteractor,
-    private val tapDeckInteractor: TapDeckInteractor
+    private val tapDeckInteractor: TapDeckInteractor,
+    private val tapWasteInteractor: TapWasteInteractor
 ) : BaseViewModel() {
     private val _solitaire = MutableLiveData<Solitaire>()
     val solitaire: LiveData<Solitaire> = _solitaire
@@ -29,7 +31,9 @@ class MainViewModel(
 
     init {
         viewModelScope.launch {
-            matchId = runInteractor(createGameInteractor, SolitaireRules)
+            matchId = runInteractor(createGameInteractor,
+                SolitaireRules
+            )
             getMatchByIdInteractor.setParams(matchId)
         }
 
@@ -40,9 +44,10 @@ class MainViewModel(
     }
 
     fun onWasteClick() {
+        viewModelScope.launchInteractor(tapWasteInteractor, matchId)
     }
 
     fun onDeckClick() {
-        viewModelScope.launchInteractor(tapDeckInteractor, TapDeckInteractor.Input(matchId))
+        viewModelScope.launchInteractor(tapDeckInteractor, matchId)
     }
 }

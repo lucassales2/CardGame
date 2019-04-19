@@ -5,7 +5,7 @@ import kotlinx.coroutines.GlobalScope
 import lucassales.com.br.inject.executorModule
 import lucassales.com.br.inject.managerModule
 import lucassales.com.br.inject.viewModelModule
-import lucassales.com.core.SolitaireRules
+import lucassales.com.core.solitaire.SolitaireRules
 import lucassales.com.data.databaseModule
 import lucassales.com.domain.GenerateEntitiesInteractor
 import lucassales.com.domain.interactorModule
@@ -25,6 +25,8 @@ class GameApplication : Application() {
             modules(databaseModule, viewModelModule, executorModule, interactorModule, managerModule)
         }
 
-        GlobalScope.launchInteractor(generateEntitiesInteractor, SolitaireRules)
+        GlobalScope.launchInteractor(generateEntitiesInteractor,
+            SolitaireRules
+        )
     }
 }

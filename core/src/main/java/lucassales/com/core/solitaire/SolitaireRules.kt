@@ -1,5 +1,6 @@
-package lucassales.com.core
+package lucassales.com.core.solitaire
 
+import lucassales.com.core.Rules
 import lucassales.com.data.entities.Figure
 import lucassales.com.data.entities.Suit
 
